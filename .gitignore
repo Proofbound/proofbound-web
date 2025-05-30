@@ -1,0 +1,23 @@
+# Quarto build output
+_site/
+
+# System files
+.DS_Store
+
+# VS Code settings
+.vscode/
+
+# Python virtual environments
+.venv/
+venv/
+
+# R environment files
+.Rhistory
+.RData
+.Rproj.user/
+
+# Node modules
+node_modules/
+
+# Quarto cache
+.quarto/
