@@ -11,6 +11,20 @@
     "href": "index.html",
     "title": "Proofbound",
     "section": "",
-    "text": "Have you ever wanted to write a book?\nProofbound makes it easy to write a 200-page book and publish it online — in minutes!"
+    "text": "Have you ever wanted to write a book?\nProofbound makes it easy to write a 200-page book and publish it online — in minutes!\nStart your writing journey today with our premium plan.\n\n Buy Now"
+  },
+  {
+    "objectID": "cancel.html",
+    "href": "cancel.html",
+    "title": "Payment Canceled",
+    "section": "",
+    "text": "Your payment was not completed. Would you like to try again?\nTry Again | Return to Home"
+  },
+  {
+    "objectID": "cancel.html#payment-canceled",
+    "href": "cancel.html#payment-canceled",
+    "title": "Payment Canceled",
+    "section": "",
+    "text": "Your payment was not completed. Would you like to try again?\nTry Again | Return to Home"
   }
 ]
