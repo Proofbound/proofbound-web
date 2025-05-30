@@ -1,7 +1,8 @@
 ---
-title: "proofbound-web"
+title: "Proofbound"
+subtitle: "Finally write that book"
 ---
 
-This is a Quarto website.
+Have you ever wanted to write a book?
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Proofbound makes it easy to write a 200-page book and publish it online — in minutes!
