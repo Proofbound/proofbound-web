@@ -1,10 +1,17 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "success.html",
+    "href": "success.html",
+    "title": "Payment Successful",
     "section": "",
-    "text": "This site is still under development.\nPowered by Hal9"
+    "text": "Your purchase was successful. You’ll receive a confirmation email soon.\nReturn to Home"
+  },
+  {
+    "objectID": "success.html#thank-you",
+    "href": "success.html#thank-you",
+    "title": "Payment Successful",
+    "section": "",
+    "text": "Your purchase was successful. You’ll receive a confirmation email soon.\nReturn to Home"
   },
   {
     "objectID": "index.html",
@@ -26,5 +33,12 @@
     "title": "Payment Canceled",
     "section": "",
     "text": "Your payment was not completed. Would you like to try again?\nTry Again | Return to Home"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "This site is still under development.\nPowered by Hal9"
   }
 ]

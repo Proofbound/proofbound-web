@@ -1,0 +1,10 @@
+---
+title: Payment Successful
+format: html
+---
+
+## Thank You!
+
+Your purchase was successful. You'll receive a confirmation email soon.
+
+[Return to Home](index.html)

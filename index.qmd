@@ -19,7 +19,7 @@ Start your writing journey today with our premium plan.
 <script src="https://js.stripe.com/v3/"></script>
 <script>
   // Initialize Stripe with your Publishable Key
-  const stripe = Stripe('pk_test_YOUR_PUBLISHABLE_KEY'); // Replace with your TEST mode Stripe Publishable Key
+  const stripe = Stripe('pk_test_51MPasYFVqC8fbxB6I1qKcWMOsSmaeC01Jj5mDS338M7R1IHktUdh3wReovg6BGKsPH8b0Hl3s6m2lHwfdJ2kue3v00N0ZT6GhC'); // Replace with your TEST mode Stripe Publishable Key
 
   // Handle button click
   const checkoutButton = document.getElementById('checkout-button');
@@ -32,7 +32,7 @@ Start your writing journey today with our premium plan.
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          priceId: 'price_1RUa4cFVqC8fbxB6WWtakog4', // Your price ID
+          priceId: 'price_1RUbGMFVqC8fbxB65a0ANhrl', // Your price ID
           successUrl: 'https://proofbound.com/success.html',
           cancelUrl: 'https://proofbound.com/cancel.html',
         }),
