@@ -1,12 +1,11 @@
-
 Have you ever wanted to write a book?
 
 Proofbound makes it easy to write a 200-page book and publish it online — in minutes!
 
 Start your writing journey today with our premium plan.
 
-<div class="flex items-center justify-center mt-6">
-  <button id="checkout-button" class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-200">
+<div class="flex-center">
+  <button id="checkout-button" class="button-buy">
     Buy Now
   </button>
 </div>
@@ -53,8 +52,3 @@ Start your writing journey today with our premium plan.
     }
   });
 </script>
-
-<style>
-  /* Tailwind CSS for responsive button styling */
-  @import 'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css';
-</style>

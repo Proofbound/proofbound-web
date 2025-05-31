@@ -71,6 +71,7 @@ ul.task-list li input[type="checkbox"] {
 
 <link rel="stylesheet" href="_resources/css/custom-fonts.css">
 <link rel="stylesheet" href="_resources/css/normalize.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -124,8 +125,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Have you ever wanted to write a book?</p>
 <p>Proofbound makes it easy to write a 200-page book and publish it online — in minutes!</p>
 <p>Start your writing journey today with our premium plan.</p>
-<div class="flex items-center justify-center mt-6">
-<p><button id="checkout-button" class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-200"> Buy Now </button></p>
+<div class="flex-center">
+<p><button id="checkout-button" class="button-buy"> Buy Now </button></p>
 </div>
 <script src="https://js.stripe.com/v3/"></script>
 <script>
@@ -169,10 +170,6 @@ ul.task-list li input[type="checkbox"] {
     }
   });
 </script>
-<style>
-  /* Tailwind CSS for responsive button styling */
-  @import 'https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css';
-</style>
 
 
 

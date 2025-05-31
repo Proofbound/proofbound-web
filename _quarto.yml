@@ -22,4 +22,5 @@ format:
     css:
       - _resources/css/custom-fonts.css # Ensure custom fonts are loaded
       - _resources/css/normalize.css    # Then apply normalization
+      - styles.css                      # Add custom styles for button, etc.
     toc: true
