@@ -1,7 +1,6 @@
 ---
 title: "Proofbound"
 subtitle: "Finally write that book"
-format: html
 ---
 
 Have you ever wanted to write a book?
