@@ -14,8 +14,12 @@ website:
 
 format:
   html:
+    mainfont: "Crimson Text"
+    monofont: "Source Code Pro"
+    standalone: true
     theme: 
       - minty
-    css: styles.css
+    css:
+      - _resources/css/custom-fonts.css # Ensure custom fonts are loaded
+      - _resources/css/normalize.css    # Then apply normalization
     toc: true
-

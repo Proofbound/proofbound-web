@@ -1,7 +1,3 @@
----
-title: "Proofbound"
-subtitle: "Finally write that book"
----
 
 Have you ever wanted to write a book?
 
