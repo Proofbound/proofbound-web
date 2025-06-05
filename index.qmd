@@ -149,7 +149,7 @@ checkoutButton.addEventListener('click', async () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                priceId: 'price_1RUbGMFVqC8fbxB65a0ANhrl',
+                priceId: 'price_1RUa4cFVqC8fbxB6WWtakog4',
                 successUrl: 'https://proofbound.com/success.html',
                 cancelUrl: 'https://proofbound.com/cancel.html',
             }),
