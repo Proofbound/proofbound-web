@@ -175,6 +175,7 @@ Ready-to-publish files for Amazon KDP, complete with ISBN registration and distr
 </div>
 </div>
 <script src="https://js.stripe.com/v3/"></script>
+<script src="./_resources/js/config.js"></script>
 <script>
 // Background Animation
 function createBackgroundElements() {
@@ -186,7 +187,6 @@ function createBackgroundElements() {
         const element = document.createElement('div');
         element.className = 'floating-element';
         
-        // Randomly choose between icon and word
         if (Math.random() < 0.7) {
             element.textContent = elements[Math.floor(Math.random() * elements.length)];
             element.classList.add(Math.random() < 0.5 ? 'quill' : 'book');
@@ -195,15 +195,11 @@ function createBackgroundElements() {
             element.classList.add('word');
         }
         
-        // Random horizontal position
         element.style.left = Math.random() * 100 + '%';
-        
-        // Random animation delay
         element.style.animationDelay = Math.random() * 20 + 's';
         
         background.appendChild(element);
         
-        // Remove element after animation
         setTimeout(() => {
             if (element.parentNode) {
                 element.parentNode.removeChild(element);
@@ -211,12 +207,10 @@ function createBackgroundElements() {
         }, 25000);
     }
     
-    // Create initial elements
     for (let i = 0; i < 15; i++) {
         setTimeout(createElement, i * 1000);
     }
     
-    // Continue creating elements
     setInterval(createElement, 2000);
 }
 
@@ -257,7 +251,7 @@ function typeWriter() {
 }
 
 // Stripe Integration
-const stripe = Stripe('pk_test_51MPasYFVqC8fbxB6I1qKcWMOsSmaeC01Jj5mDS338M7R1IHktUdh3wReovg6BGKsPH8b0Hl3s6m2lHwfdJ2kue3v00N0ZT6GhC');
+const stripe = Stripe(stripeConfig.publishableKey);
 
 const checkoutButton = document.getElementById('checkout-button');
 checkoutButton.addEventListener('click', async () => {
@@ -268,7 +262,7 @@ checkoutButton.addEventListener('click', async () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                priceId: 'price_1RUbGMFVqC8fbxB65a0ANhrl',
+                priceId: stripeConfig.priceId,
                 successUrl: 'https://proofbound.com/success.html',
                 cancelUrl: 'https://proofbound.com/cancel.html',
             }),
