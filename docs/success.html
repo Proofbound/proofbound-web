@@ -113,14 +113,8 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#thank-you" id="toc-thank-you" class="nav-link active" data-scroll-target="#thank-you">Thank You!</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -144,32 +138,35 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="thank-you" class="level2">
-<h2 class="anchored" data-anchor-id="thank-you">Thank You!</h2>
-<p>Your purchase was successful. You’ll receive a confirmation email soon.</p>
+<script>
+  if (typeof window !== 'undefined') {
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('session_id');
+    if (!sessionId) {
+      document.write('<h1>Access Denied</h1><p>Please complete the payment to access this page.</p><a href="/">Return to Home</a>');
+    } else {
+      // Existing Hal9 iframe script
+      async function loadIframe() {
+        try {
+          const response = await fetch('/.netlify/functions/hal9-embed');
+          if (!response.ok) throw new Error(`Failed to fetch Hal9 URL: ${response.status}`);
+          const data = await response.json();
+          document.getElementById('hal9-iframe').src = data.url;
+        } catch (error) {
+          console.error('Error loading Hal9 iframe:', error);
+          document.getElementById('hal9-iframe').src = '';
+        }
+      }
+      window.addEventListener('load', loadIframe);
+    }
+  }
+</script>
 <div style="border: 2px solid #2563eb; border-radius: 1rem; box-shadow: 0 2px 12px rgba(37,99,235,0.08); padding: 1.5rem; margin: 2rem 0; background: #f8faff;">
 <p><iframe id="hal9-iframe" width="100%" height="600" style="border:none;"></iframe></p>
 </div>
-<script>
-  if (typeof window !== 'undefined') {
-    async function loadContent() {
-      try {
-        const response = await fetch('/.netlify/functions/hal9-embed');
-        if (!response.ok) throw new Error('Failed to fetch Hal9 URL: ' + response.status);
-        const data = await response.json();
-        document.getElementById('hal9-iframe').src = data.url;
-      } catch (error) {
-        console.error('Error loading Hal9 iframe:', error);
-        document.getElementById('hal9-iframe').src = '';
-      }
-    }
-    window.addEventListener('load', loadContent);
-  }
-</script>
 <p><a href="index.html">Return to Home</a></p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

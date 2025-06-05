@@ -3,30 +3,33 @@ title: Payment Successful
 format: html
 ---
 
-## Thank You!
 
-Your purchase was successful. You'll receive a confirmation email soon.
-
-
+<script>
+  if (typeof window !== 'undefined') {
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('session_id');
+    if (!sessionId) {
+      document.write('<h1>Access Denied</h1><p>Please complete the payment to access this page.</p><a href="/">Return to Home</a>');
+    } else {
+      // Existing Hal9 iframe script
+      async function loadIframe() {
+        try {
+          const response = await fetch('/.netlify/functions/hal9-embed');
+          if (!response.ok) throw new Error(`Failed to fetch Hal9 URL: ${response.status}`);
+          const data = await response.json();
+          document.getElementById('hal9-iframe').src = data.url;
+        } catch (error) {
+          console.error('Error loading Hal9 iframe:', error);
+          document.getElementById('hal9-iframe').src = '';
+        }
+      }
+      window.addEventListener('load', loadIframe);
+    }
+  }
+</script>
 
 <div style="border: 2px solid #2563eb; border-radius: 1rem; box-shadow: 0 2px 12px rgba(37,99,235,0.08); padding: 1.5rem; margin: 2rem 0; background: #f8faff;">
   <iframe id="hal9-iframe" width="100%" height="600" style="border:none;"></iframe>
 </div>
 
-<script>
-  if (typeof window !== 'undefined') {
-    async function loadContent() {
-      try {
-        const response = await fetch('/.netlify/functions/hal9-embed');
-        if (!response.ok) throw new Error('Failed to fetch Hal9 URL: ' + response.status);
-        const data = await response.json();
-        document.getElementById('hal9-iframe').src = data.url;
-      } catch (error) {
-        console.error('Error loading Hal9 iframe:', error);
-        document.getElementById('hal9-iframe').src = '';
-      }
-    }
-    window.addEventListener('load', loadContent);
-  }
-</script>
 [Return to Home](index.html)
