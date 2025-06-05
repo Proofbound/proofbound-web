@@ -1,5 +1,11 @@
-# Quarto build output
-_site/
+
+
+# Ignore environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # System files
 .DS_Store
@@ -16,10 +22,10 @@ venv/
 .RData
 .Rproj.user/
 
-# Node modules
-node_modules/
-
 # Quarto cache
 .quarto/
 
 /.quarto/
+
+# Local Netlify folder
+.netlify
