@@ -26,5 +26,54 @@
     "title": "About",
     "section": "",
     "text": "This site is still under development.\nPowered by Hal9"
+  },
+  {
+    "objectID": "CLAUDE.html",
+    "href": "CLAUDE.html",
+    "title": "CLAUDE.md",
+    "section": "",
+    "text": "This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.\n\n\nLocal Development:\nquarto preview          # Start local dev server on port 4710\nBuild:\nquarto render          # Generate static site to docs/ directory\nNo testing setup - The project uses a placeholder test script that exits with error.\n\n\n\nThis is a Quarto-based static website with Netlify serverless functions for a book writing service called Proofbound. The site integrates Stripe payments with HAL9 AI book generation.\n\n\n\nFrontend: Quarto static site generator with custom CSS animations\nBackend: Netlify Functions (Node.js serverless)\nPayment: Stripe Checkout integration\nAI Service: HAL9 book generation API\nHosting: Netlify with custom domain proofbound.com\n\n\n\n\n\nLanding page (index.qmd) → Stripe Checkout → Success page verification → HAL9 book generator\nPayment verification prevents unauthorized access to premium AI tool\nServerless functions handle payment validation and HAL9 URL generation\n\n\n\n\n\nContent Files: - index.qmd - Landing page with animated book-writing theme - success.qmd - Post-payment success page (only displays after payment verification) - about.qmd, cancel.qmd - Supporting pages\nConfiguration: - _quarto.yml - Site config (theme: minty, fonts: Crimson Text, port: 4710) - netlify.toml - Deployment config, redirect rules for payment verification - _resources/js/config.js - Stripe configuration with live keys\nServerless Functions: - netlify/functions/verify-session.js - Validates Stripe payment before allowing success page access - netlify/functions/hal9-embed.js - Generates HAL9 iframe URL with API key\nEnvironment Variables Required: - STRIPE_SECRET_KEY - Stripe API secret key - HAL9_API_KEY - HAL9 service API key\n\n\n\nStripe Setup: - Uses live price ID: price_1RUa4cFVqC8fbxB6WWtakog4 - External Stripe endpoint: https://proofbound-stripe.netlify.app - Session verification enforced via Netlify redirect rules\nSecurity Flow: - /success.html redirects to /.netlify/functions/verify-session (status 302) - Function validates payment completion before serving success page - HAL9 URL generation includes CORS protection for proofbound.com\n\n\n\n\nOutput Directory: docs/ (configured in _quarto.yml)\nFunctions Directory: netlify/functions/\nDomain: Custom domain setup on Netlify\nNo CI/CD configuration files present - likely using Netlify’s Git-based deployment\n\n\n\n\n\nQuarto preview runs on port 4710 (not default 3000)\nSite uses custom fonts (Crimson Text, Source Code Pro) with CSS loading order\nNo package manager scripts beyond placeholder test\nUses dotenv for environment variable management in functions"
+  },
+  {
+    "objectID": "CLAUDE.html#development-commands",
+    "href": "CLAUDE.html#development-commands",
+    "title": "CLAUDE.md",
+    "section": "",
+    "text": "Local Development:\nquarto preview          # Start local dev server on port 4710\nBuild:\nquarto render          # Generate static site to docs/ directory\nNo testing setup - The project uses a placeholder test script that exits with error."
+  },
+  {
+    "objectID": "CLAUDE.html#architecture-overview",
+    "href": "CLAUDE.html#architecture-overview",
+    "title": "CLAUDE.md",
+    "section": "",
+    "text": "This is a Quarto-based static website with Netlify serverless functions for a book writing service called Proofbound. The site integrates Stripe payments with HAL9 AI book generation.\n\n\n\nFrontend: Quarto static site generator with custom CSS animations\nBackend: Netlify Functions (Node.js serverless)\nPayment: Stripe Checkout integration\nAI Service: HAL9 book generation API\nHosting: Netlify with custom domain proofbound.com\n\n\n\n\n\nLanding page (index.qmd) → Stripe Checkout → Success page verification → HAL9 book generator\nPayment verification prevents unauthorized access to premium AI tool\nServerless functions handle payment validation and HAL9 URL generation"
+  },
+  {
+    "objectID": "CLAUDE.html#key-files-structure",
+    "href": "CLAUDE.html#key-files-structure",
+    "title": "CLAUDE.md",
+    "section": "",
+    "text": "Content Files: - index.qmd - Landing page with animated book-writing theme - success.qmd - Post-payment success page (only displays after payment verification) - about.qmd, cancel.qmd - Supporting pages\nConfiguration: - _quarto.yml - Site config (theme: minty, fonts: Crimson Text, port: 4710) - netlify.toml - Deployment config, redirect rules for payment verification - _resources/js/config.js - Stripe configuration with live keys\nServerless Functions: - netlify/functions/verify-session.js - Validates Stripe payment before allowing success page access - netlify/functions/hal9-embed.js - Generates HAL9 iframe URL with API key\nEnvironment Variables Required: - STRIPE_SECRET_KEY - Stripe API secret key - HAL9_API_KEY - HAL9 service API key"
+  },
+  {
+    "objectID": "CLAUDE.html#payment-integration-details",
+    "href": "CLAUDE.html#payment-integration-details",
+    "title": "CLAUDE.md",
+    "section": "",
+    "text": "Stripe Setup: - Uses live price ID: price_1RUa4cFVqC8fbxB6WWtakog4 - External Stripe endpoint: https://proofbound-stripe.netlify.app - Session verification enforced via Netlify redirect rules\nSecurity Flow: - /success.html redirects to /.netlify/functions/verify-session (status 302) - Function validates payment completion before serving success page - HAL9 URL generation includes CORS protection for proofbound.com"
+  },
+  {
+    "objectID": "CLAUDE.html#deployment",
+    "href": "CLAUDE.html#deployment",
+    "title": "CLAUDE.md",
+    "section": "",
+    "text": "Output Directory: docs/ (configured in _quarto.yml)\nFunctions Directory: netlify/functions/\nDomain: Custom domain setup on Netlify\nNo CI/CD configuration files present - likely using Netlify’s Git-based deployment"
+  },
+  {
+    "objectID": "CLAUDE.html#development-notes",
+    "href": "CLAUDE.html#development-notes",
+    "title": "CLAUDE.md",
+    "section": "",
+    "text": "Quarto preview runs on port 4710 (not default 3000)\nSite uses custom fonts (Crimson Text, Source Code Pro) with CSS loading order\nNo package manager scripts beyond placeholder test\nUses dotenv for environment variable management in functions"
   }
 ]

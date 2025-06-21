@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Proofbound</title>
+<title>claude – Proofbound</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -72,7 +106,6 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="_resources/css/custom-fonts.css">
 <link rel="stylesheet" href="_resources/css/normalize.css">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="_resources/css/landing.css">
 </head>
 
 <body class="nav-fixed">
@@ -96,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -111,247 +144,104 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-layout-custom page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#claude.md" id="toc-claude.md" class="nav-link active" data-scroll-target="#claude.md">CLAUDE.md</a>
+  <ul class="collapse">
+  <li><a href="#development-commands" id="toc-development-commands" class="nav-link" data-scroll-target="#development-commands">Development Commands</a></li>
+  <li><a href="#architecture-overview" id="toc-architecture-overview" class="nav-link" data-scroll-target="#architecture-overview">Architecture Overview</a>
+  <ul class="collapse">
+  <li><a href="#core-architecture" id="toc-core-architecture" class="nav-link" data-scroll-target="#core-architecture">Core Architecture</a></li>
+  <li><a href="#user-flow" id="toc-user-flow" class="nav-link" data-scroll-target="#user-flow">User Flow</a></li>
+  </ul></li>
+  <li><a href="#key-files-structure" id="toc-key-files-structure" class="nav-link" data-scroll-target="#key-files-structure">Key Files &amp; Structure</a></li>
+  <li><a href="#payment-integration-details" id="toc-payment-integration-details" class="nav-link" data-scroll-target="#payment-integration-details">Payment Integration Details</a></li>
+  <li><a href="#deployment" id="toc-deployment" class="nav-link" data-scroll-target="#deployment">Deployment</a></li>
+  <li><a href="#development-notes" id="toc-development-notes" class="nav-link" data-scroll-target="#development-notes">Development Notes</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
 
-<div id="bgAnimation" class="background-animation">
-
-</div>
-<div class="container">
-<svg class="logo" viewbox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-<polygon points="40,5 65,22.5 65,57.5 40,75 15,57.5 15,22.5" fill="currentColor"></polygon> <path d="M22 30 L37 33 L37 50 L22 47 Z" fill="white"></path> <path d="M43 33 L58 30 L58 47 L43 50 Z" fill="white"></path> <line x1="25" y1="36" x2="34" y2="37.5" stroke="currentColor" stroke-width="1"></line> <line x1="25" y1="40" x2="32" y2="41.5" stroke="currentColor" stroke-width="1"></line> <line x1="46" y1="37.5" x2="55" y2="36" stroke="currentColor" stroke-width="1"></line> <line x1="48" y1="41.5" x2="55" y2="40" stroke="currentColor" stroke-width="1"></line>
-</svg>
-<h1 class="hero-title">
-Have you ever wanted to write a book?
-</h1>
-<p class="hero-subtitle">
-Proofbound makes it easy to write a <span class="typing-text">200-page book</span> and get your printed copy within days!
-</p>
-<p class="hero-description">
-Transform your ideas into professionally formatted books with our platform. From concept to publication, we handle the technical details so you can focus on your story.
-</p>
-<div class="pricing-options">
-<div class="pricing-card">
-<h3>
-Fully Automated
-</h3>
-<div class="price">
-$49.95
-</div>
-<p class="pricing-description">
-AI-powered book generation with PDF and cover ready in minutes
-</p>
-<ul class="pricing-features">
-<li>
-✓ AI-generated content
-</li>
-<li>
-✓ Professional formatting
-</li>
-<li>
-✓ Cover design included
-</li>
-<li>
-✓ Printed copy shipped
-</li>
+<section id="claude.md" class="level1">
+<h1>CLAUDE.md</h1>
+<p>This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.</p>
+<section id="development-commands" class="level2">
+<h2 class="anchored" data-anchor-id="development-commands">Development Commands</h2>
+<p><strong>Local Development:</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> preview          <span class="co"># Start local dev server on port 4710</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Build:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render          <span class="co"># Generate static site to docs/ directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>No testing setup</strong> - The project uses a placeholder test script that exits with error.</p>
+</section>
+<section id="architecture-overview" class="level2">
+<h2 class="anchored" data-anchor-id="architecture-overview">Architecture Overview</h2>
+<p>This is a <strong>Quarto-based static website</strong> with <strong>Netlify serverless functions</strong> for a book writing service called Proofbound. The site integrates Stripe payments with HAL9 AI book generation.</p>
+<section id="core-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="core-architecture">Core Architecture</h3>
+<ul>
+<li><strong>Frontend</strong>: Quarto static site generator with custom CSS animations</li>
+<li><strong>Backend</strong>: Netlify Functions (Node.js serverless)</li>
+<li><strong>Payment</strong>: Stripe Checkout integration</li>
+<li><strong>AI Service</strong>: HAL9 book generation API</li>
+<li><strong>Hosting</strong>: Netlify with custom domain <code>proofbound.com</code></li>
 </ul>
-<button class="cta-button" id="checkout-button">
-Start Your Writing Journey
-</button>
-</div>
-<div class="pricing-card elite">
-<h3>
-Elite Edition
-</h3>
-<div class="price">
-Custom Pricing
-</div>
-<p class="pricing-description">
-Hand-crafted by human experts with draft ready in 24 hours
-</p>
-<ul class="pricing-features">
-<li>
-✓ Expert human writer
-</li>
-<li>
-✓ 24-hour draft delivery
-</li>
-<li>
-✓ Premium formatting
-</li>
-<li>
-✓ Printed copy shipped
-</li>
+</section>
+<section id="user-flow" class="level3">
+<h3 class="anchored" data-anchor-id="user-flow">User Flow</h3>
+<ol type="1">
+<li>Landing page (<code>index.qmd</code>) → Stripe Checkout → Success page verification → HAL9 book generator</li>
+<li>Payment verification prevents unauthorized access to premium AI tool</li>
+<li>Serverless functions handle payment validation and HAL9 URL generation</li>
+</ol>
+</section>
+</section>
+<section id="key-files-structure" class="level2">
+<h2 class="anchored" data-anchor-id="key-files-structure">Key Files &amp; Structure</h2>
+<p><strong>Content Files:</strong> - <code>index.qmd</code> - Landing page with animated book-writing theme - <code>success.qmd</code> - Post-payment success page (only displays after payment verification) - <code>about.qmd</code>, <code>cancel.qmd</code> - Supporting pages</p>
+<p><strong>Configuration:</strong> - <code>_quarto.yml</code> - Site config (theme: minty, fonts: Crimson Text, port: 4710) - <code>netlify.toml</code> - Deployment config, redirect rules for payment verification - <code>_resources/js/config.js</code> - Stripe configuration with live keys</p>
+<p><strong>Serverless Functions:</strong> - <code>netlify/functions/verify-session.js</code> - Validates Stripe payment before allowing success page access - <code>netlify/functions/hal9-embed.js</code> - Generates HAL9 iframe URL with API key</p>
+<p><strong>Environment Variables Required:</strong> - <code>STRIPE_SECRET_KEY</code> - Stripe API secret key - <code>HAL9_API_KEY</code> - HAL9 service API key</p>
+</section>
+<section id="payment-integration-details" class="level2">
+<h2 class="anchored" data-anchor-id="payment-integration-details">Payment Integration Details</h2>
+<p><strong>Stripe Setup:</strong> - Uses live price ID: <code>price_1RUa4cFVqC8fbxB6WWtakog4</code> - External Stripe endpoint: <code>https://proofbound-stripe.netlify.app</code> - Session verification enforced via Netlify redirect rules</p>
+<p><strong>Security Flow:</strong> - <code>/success.html</code> redirects to <code>/.netlify/functions/verify-session</code> (status 302) - Function validates payment completion before serving success page - HAL9 URL generation includes CORS protection for <code>proofbound.com</code></p>
+</section>
+<section id="deployment" class="level2">
+<h2 class="anchored" data-anchor-id="deployment">Deployment</h2>
+<ul>
+<li><strong>Output Directory</strong>: <code>docs/</code> (configured in <code>_quarto.yml</code>)</li>
+<li><strong>Functions Directory</strong>: <code>netlify/functions/</code></li>
+<li><strong>Domain</strong>: Custom domain setup on Netlify</li>
+<li>No CI/CD configuration files present - likely using Netlify’s Git-based deployment</li>
 </ul>
-<button class="cta-button elite-button" onclick="window.open('https://app.proofbound.com', '_blank')">
-Get Elite Service
-</button>
-</div>
-</div>
-<div class="features">
-<div class="feature">
-<div class="feature-icon">
-✍️
-</div>
-<h3>
-AI-Powered Writing
-</h3>
-<p>
-Our advanced AI helps expand your ideas into full chapters while maintaining your unique voice and style.
-</p>
-</div>
-<div class="feature">
-<div class="feature-icon">
-📚
-</div>
-<h3>
-Professional Formatting
-</h3>
-<p>
-Automatically formatted for print and digital publishing with professional layouts and typography.
-</p>
-</div>
-<div class="feature">
-<div class="feature-icon">
-🚀
-</div>
-<h3>
-Instant Publishing
-</h3>
-<p>
-Ready-to-publish files for Amazon KDP, complete with ISBN registration and distribution setup.
-</p>
-</div>
-</div>
-</div>
-<script src="https://js.stripe.com/v3/"></script>
-<script src="./_resources/js/config.js"></script>
-<script>
-// Background Animation
-function createBackgroundElements() {
-    const background = document.getElementById('bgAnimation');
-    const elements = ['✒️', '📖', '📝', '📚', '📜', '✍️', '📄', '📔'];
-    const words = ['Chapter', 'Story', 'Novel', 'Author', 'Write', 'Create', 'Publish', 'Book', 'Words', 'Pages'];
-    
-    function createElement() {
-        const element = document.createElement('div');
-        element.className = 'floating-element';
-        
-        if (Math.random() < 0.7) {
-            element.textContent = elements[Math.floor(Math.random() * elements.length)];
-            element.classList.add(Math.random() < 0.5 ? 'quill' : 'book');
-        } else {
-            element.textContent = words[Math.floor(Math.random() * words.length)];
-            element.classList.add('word');
-        }
-        
-        element.style.left = Math.random() * 100 + '%';
-        element.style.animationDelay = Math.random() * 20 + 's';
-        
-        background.appendChild(element);
-        
-        setTimeout(() => {
-            if (element.parentNode) {
-                element.parentNode.removeChild(element);
-            }
-        }, 25000);
-    }
-    
-    for (let i = 0; i < 15; i++) {
-        setTimeout(createElement, i * 1000);
-    }
-    
-    setInterval(createElement, 2000);
-}
-
-// Typing Animation
-function typeWriter() {
-    const texts = ['200-page book', 'professional novel', 'bestseller', 'memoir', 'non-fiction guide'];
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    const typingElement = document.querySelector('.typing-text');
-    
-    function type() {
-        const currentText = texts[textIndex];
-        
-        if (isDeleting) {
-            typingElement.textContent = currentText.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            typingElement.textContent = currentText.substring(0, charIndex + 1);
-            charIndex++;
-        }
-        
-        let typeSpeed = isDeleting ? 50 : 100;
-        
-        if (!isDeleting && charIndex === currentText.length) {
-            typeSpeed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            textIndex = (textIndex + 1) % texts.length;
-            typeSpeed = 500;
-        }
-        
-        setTimeout(type, typeSpeed);
-    }
-    
-    type();
-}
-
-// Stripe Integration
-const stripe = Stripe(stripeConfig.publishableKey);
-
-const checkoutButton = document.getElementById('checkout-button');
-checkoutButton.addEventListener('click', async () => {
-    try {
-        const response = await fetch('https://proofbound-stripe.netlify.app/.netlify/functions/create-checkout-session', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                priceId: stripeConfig.priceId,
-                successUrl: 'https://proofbound.com/success.html',
-                cancelUrl: 'https://proofbound.com/cancel.html',
-            }),
-        });
-
-        const session = await response.json();
-
-        if (session.error) {
-            console.error('Error from serverless:', session.error);
-            alert('Failed to initiate payment. Please try again.');
-            return;
-        }
-
-        const error = await stripe.redirectToCheckout({ sessionId: session.id });
-        if (error) {
-            console.error('Error redirecting to Checkout:', error);
-            alert('Failed to initiate payment. Please try again.');
-        }
-    } catch (err) {
-        console.error('Error:', err);
-        alert('An error occurred. Please try again later.');
-    }
-});
-
-// Initialize animations
-document.addEventListener('DOMContentLoaded', function() {
-    createBackgroundElements();
-    typeWriter();
-});
-</script>
+</section>
+<section id="development-notes" class="level2">
+<h2 class="anchored" data-anchor-id="development-notes">Development Notes</h2>
+<ul>
+<li>Quarto preview runs on port 4710 (not default 3000)</li>
+<li>Site uses custom fonts (Crimson Text, Source Code Pro) with CSS loading order</li>
+<li>No package manager scripts beyond placeholder test</li>
+<li>Uses dotenv for environment variable management in functions</li>
+</ul>
 
 
+</section>
+</section>
 
-
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

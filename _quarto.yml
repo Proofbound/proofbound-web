@@ -3,6 +3,9 @@ project:
   output-dir: docs
   preview:
     port: 4710
+  render:
+    - "*.qmd"
+    - "!CLAUDE.md"
 
 website:
   title: "Proofbound"

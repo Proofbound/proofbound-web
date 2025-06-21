@@ -151,6 +151,110 @@ body {
     background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
 }
 
+/* Pricing Options */
+.pricing-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 800px;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.pricing-card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.pricing-card.elite {
+    border: 2px solid #ffd700;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 255, 255, 0.9) 100%);
+}
+
+.pricing-card.elite::before {
+    content: "PREMIUM";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4a 100%);
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+}
+
+.pricing-card h3 {
+    font-size: 1.75rem;
+    color: #212529;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #007bff;
+    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.pricing-card.elite .price {
+    color: #ffd700;
+}
+
+.pricing-description {
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.pricing-features {
+    list-style: none;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.pricing-features li {
+    color: #495057;
+    margin-bottom: 0.75rem;
+    padding-left: 1rem;
+    position: relative;
+}
+
+.pricing-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #28a745;
+    font-weight: bold;
+}
+
+.elite-button {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4a 100%);
+    color: #333;
+    font-weight: 600;
+}
+
+.elite-button:hover {
+    background: linear-gradient(135deg, #ffed4a 0%, #ffd700 100%);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
 .features {
     margin-top: 4rem;
     display: grid;
@@ -197,6 +301,19 @@ body {
     
     .hero-description {
         font-size: 1.1rem;
+    }
+    
+    .pricing-options {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .pricing-card {
+        padding: 2rem;
+    }
+    
+    .price {
+        font-size: 2rem;
     }
     
     .features {

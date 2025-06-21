@@ -22,17 +22,45 @@ format:
 <h1 class="hero-title">Have you ever wanted to write a book?</h1>
 
 <p class="hero-subtitle">
-Proofbound makes it easy to write a <span class="typing-text">200-page book</span> and publish it online — in minutes!
+Proofbound makes it easy to write a <span class="typing-text">200-page book</span> and get your printed copy within days!
 </p>
 
 <p class="hero-description">
-Transform your ideas into professionally formatted books with our AI-powered platform. 
+Transform your ideas into professionally formatted books with our platform. 
 From concept to publication, we handle the technical details so you can focus on your story.
 </p>
 
+<div class="pricing-options">
+<div class="pricing-card">
+<h3>Fully Automated</h3>
+<div class="price">$49.95</div>
+<p class="pricing-description">AI-powered book generation with PDF and cover ready in minutes</p>
+<ul class="pricing-features">
+<li>✓ AI-generated content</li>
+<li>✓ Professional formatting</li>
+<li>✓ Cover design included</li>
+<li>✓ Printed copy shipped</li>
+</ul>
 <button class="cta-button" id="checkout-button">
-Start Your Writing Journey Today
+Start Your Writing Journey
 </button>
+</div>
+
+<div class="pricing-card elite">
+<h3>Elite Edition</h3>
+<div class="price">Custom Pricing</div>
+<p class="pricing-description">Hand-crafted by human experts with draft ready in 24 hours</p>
+<ul class="pricing-features">
+<li>✓ Expert human writer</li>
+<li>✓ 24-hour draft delivery</li>
+<li>✓ Premium formatting</li>
+<li>✓ Printed copy shipped</li>
+</ul>
+<button class="cta-button elite-button" onclick="window.open('https://app.proofbound.com', '_blank')">
+Get Elite Service
+</button>
+</div>
+</div>
 
 <div class="features">
 <div class="feature">
