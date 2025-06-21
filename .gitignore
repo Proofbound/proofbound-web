@@ -10,6 +10,7 @@
 # Ignore config files with sensitive keys
 _resources/js/config.js
 
+
 # System files
 .DS_Store
 

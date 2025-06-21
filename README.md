@@ -44,7 +44,7 @@ quarto render          # Generate static site to docs/ directory
 
 2. **Configure Environment Variables**
    ```bash
-   cp .env.example .env
+   cp env.example .env
    # Edit .env and add your actual API keys
    ```
 
