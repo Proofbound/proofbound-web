@@ -1,14 +1,19 @@
 // netlify/functions/hal9-direct.js
-const fetch = require('node-fetch');
+// Remove this line: const fetch = require('node-fetch');
 
 exports.handler = async (event, context) => {
+  console.log('=== HAL9 Direct Function Called ===');
+  console.log('Method:', event.httpMethod);
+  console.log('HAL9_API_KEY present:', !!process.env.HAL9_API_KEY);
+
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  // Verify payment session (reuse existing logic)
-  const sessionId = event.headers.referer?.includes('session_id=');
-  if (!sessionId) {
+  // Simple session verification - check if referer has session_id
+  const referer = event.headers.referer || '';
+  if (!referer.includes('session_id=')) {
+    console.log('No session_id in referer:', referer);
     return { 
       statusCode: 403, 
       body: JSON.stringify({ error: 'Payment verification required' })
@@ -17,9 +22,10 @@ exports.handler = async (event, context) => {
 
   try {
     const { title, author, book_idea } = JSON.parse(event.body);
+    console.log('Parsed data:', { title, author });
     
-    // Direct HAL9 API call instead of iframe
-    const response = await fetch('https://hal9.com/api/your-endpoint', {
+    // Call HAL9 API using built-in fetch
+    const response = await fetch('https://api.hal9.com/books/bookgeneratorapi/proxy/toc', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,6 +33,10 @@ exports.handler = async (event, context) => {
       },
       body: JSON.stringify({ title, author, book_idea }),
     });
+
+    if (!response.ok) {
+      throw new Error(`HAL9 API error: ${response.status}`);
+    }
 
     const result = await response.json();
 
@@ -39,6 +49,7 @@ exports.handler = async (event, context) => {
       body: JSON.stringify(result),
     };
   } catch (error) {
+    console.error('Error:', error.message);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: error.message }),
