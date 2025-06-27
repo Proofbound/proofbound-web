@@ -25,8 +25,11 @@ A Quarto-based landing page for Proofbound, an AI-powered book writing service w
 - Node.js for serverless functions
 
 ### Local Development
+To run the full site with serverless functions locally, you'll need the Netlify CLI.
+
 ```bash
-quarto preview          # Start dev server on port 4710
+npm install -g netlify-cli # Install Netlify CLI (one-time install)
+netlify dev                # Starts Quarto preview and serverless functions
 ```
 
 ### Build
@@ -73,8 +76,20 @@ Required for frontend (in config.js):
 
 ## Deployment
 
-Hosted on Netlify with:
-- Custom domain configuration
-- Serverless function deployment
-- Redirect rules for payment verification
-- Environment variable management
+This project is designed for seamless deployment on Netlify via a Git-based workflow.
+
+1.  **Connect Repository**: Link your Git repository (e.g., GitHub) to a new site on Netlify.
+2.  **Build Settings**: Configure the following settings in the Netlify UI:
+    -   **Build command**: `quarto render`
+    -   **Publish directory**: `docs/`
+    -   **Functions directory**: `netlify/functions/` (usually detected automatically)
+3.  **Environment Variables**: This is a critical step. Your serverless functions need API keys to work in production.
+    -   In your Netlify site dashboard, go to **Site configuration** > **Build & deploy** > **Environment**.
+    -   Add the same environment variables listed in your `.env.example` file (e.g., `STRIPE_SECRET_KEY`, `HAL9_API_KEY`). These are kept secure on Netlify and are injected during the build and at runtime.
+4.  **Deploy**: Push your code to the main branch of your repository. Netlify will automatically trigger a build, render your Quarto site, and deploy your serverless functions.
+
+Your functions will be available at `https://your-site-name.netlify.app/.netlify/functions/<function-name>`.
+
+### Notes
+- The `.env` file is only for local development with `netlify dev` and should be listed in your `.gitignore` file. It will not be used by Netlify for production builds.
+- Any push to your connected main branch will trigger a new deployment of both the site and the functions.

@@ -23,11 +23,15 @@ document.getElementById('book-form').addEventListener('submit', async (e) => {
   const generateButton = document.getElementById('generate-button');
   const buttonText = generateButton.querySelector('.button-text');
   const spinner = generateButton.querySelector('.spinner');
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const sessionId = urlParams.get('session_id');
   
   const formData = {
     title: document.getElementById('title').value,
     author: document.getElementById('author').value,
-    book_idea: document.getElementById('book_idea').value
+    book_idea: document.getElementById('book_idea').value,
+    sessionId: sessionId
   };
   
   try {

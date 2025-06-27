@@ -1,30 +1,67 @@
 // netlify/functions/hal9-direct.js
-// Remove this line: const fetch = require('node-fetch');
+
+const allowedOrigins = [
+  'https://proofbound.com',
+  'http://localhost:8888', // Common netlify dev port
+  'http://localhost:4710'  // Quarto preview port from CLAUDE.md
+];
 
 exports.handler = async (event, context) => {
   console.log('=== HAL9 Direct Function Called ===');
   console.log('Method:', event.httpMethod);
   console.log('HAL9_API_KEY present:', !!process.env.HAL9_API_KEY);
 
+  const origin = event.headers.origin;
+  const corsHeaders = {
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+
+  if (allowedOrigins.includes(origin)) {
+    corsHeaders['Access-Control-Allow-Origin'] = origin;
+  }
+
+  // Handle preflight OPTIONS request for CORS
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 204, headers: corsHeaders, body: '' };
+  }
+
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
-  // Simple session verification - check if referer has session_id
-  const referer = event.headers.referer || '';
-  if (!referer.includes('session_id=')) {
-    console.log('No session_id in referer:', referer);
-    return { 
-      statusCode: 403, 
-      body: JSON.stringify({ error: 'Payment verification required' })
-    };
-  }
-
   try {
-    const { title, author, book_idea } = JSON.parse(event.body);
-    console.log('Parsed data:', { title, author });
-    
-    // Call HAL9 API using built-in fetch
+    const { title, author, book_idea, sessionId } = JSON.parse(event.body);
+    console.log('Parsed data:', { title, author, sessionId });
+
+    if (!sessionId) {
+      return {
+        statusCode: 403,
+        headers: corsHeaders,
+        body: JSON.stringify({ error: 'Payment verification failed: No Session ID provided.' }),
+      };
+    }
+
+    // Call the new verification endpoint.
+    // process.env.URL is automatically set by Netlify to the site's primary URL.
+    const verificationUrl = `${process.env.URL}/.netlify/functions/verify-checkout-session`;
+    const verificationResponse = await fetch(verificationUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sessionId: sessionId }),
+    });
+
+    if (!verificationResponse.ok) {
+      const errorBody = await verificationResponse.json();
+      console.error('Verification request failed:', errorBody.error);
+      return {
+        statusCode: 403,
+        headers: corsHeaders,
+        body: JSON.stringify({ error: `Payment verification failed: ${errorBody.error || 'Unknown reason'}` }),
+      };
+    }
+
+    console.log('Payment verified successfully. Calling HAL9 API.');
     const response = await fetch('https://api.hal9.com/books/bookgeneratorapi/proxy/toc', {
       method: 'POST',
       headers: {
@@ -35,7 +72,8 @@ exports.handler = async (event, context) => {
     });
 
     if (!response.ok) {
-      throw new Error(`HAL9 API error: ${response.status}`);
+      const errorBody = await response.text();
+      throw new Error(`HAL9 API error: ${response.status} - ${errorBody}`);
     }
 
     const result = await response.json();
@@ -43,8 +81,8 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 200,
       headers: {
+        ...corsHeaders,
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://proofbound.com',
       },
       body: JSON.stringify(result),
     };
@@ -52,6 +90,7 @@ exports.handler = async (event, context) => {
     console.error('Error:', error.message);
     return {
       statusCode: 500,
+      headers: corsHeaders,
       body: JSON.stringify({ error: error.message }),
     };
   }
