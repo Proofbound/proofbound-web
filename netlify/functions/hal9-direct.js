@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 // netlify/functions/hal9-direct.js
 
 const allowedOrigins = [
